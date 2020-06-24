@@ -9,7 +9,7 @@
 	<key>CFBundleName</key>
 	<string>X-Moto</string>
 	<key>CFBundleExecutable</key>
-	<string>xmoto</string>
+	<string>X-Moto</string>
 	<key>CFBundleIconFile</key>
 	<string>X-Moto.icns</string>
 	<key>CFBundleIdentifier</key>
