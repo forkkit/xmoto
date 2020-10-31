@@ -250,180 +250,132 @@ InputEventType InputHandler::joystickAxisSens(Sint16 m_joyAxisValue) {
                                                                 : INPUT_DOWN;
 }
 
+IFullKey InputHandler::getDefaultPlayerKey(int player, int key) {
+  switch (player) {
+    case 0: {
+      switch (key) {
+        case INPUT_DRIVE:     return IFullKey("KeyDrive",     XMKey(SDLK_UP,    KMOD_NONE), GAMETEXT_DRIVE);
+        case INPUT_BRAKE:     return IFullKey("KeyBrake",     XMKey(SDLK_DOWN,  KMOD_NONE), GAMETEXT_BRAKE);
+        case INPUT_FLIPLEFT:  return IFullKey("KeyFlipLeft",  XMKey(SDLK_LEFT,  KMOD_NONE), GAMETEXT_FLIPLEFT);
+        case INPUT_FLIPRIGHT: return IFullKey("KeyFlipRight", XMKey(SDLK_RIGHT, KMOD_NONE), GAMETEXT_FLIPRIGHT);
+        case INPUT_CHANGEDIR: return IFullKey("KeyChangeDir", XMKey(SDLK_SPACE, KMOD_NONE), GAMETEXT_CHANGEDIR);
+      }
+      break;
+    }
+    case 1: {
+      switch (key) {
+        case INPUT_DRIVE:     return IFullKey("KeyDrive",     XMKey(SDLK_a,     KMOD_NONE), GAMETEXT_DRIVE);
+        case INPUT_BRAKE:     return IFullKey("KeyBrake",     XMKey(SDLK_q,     KMOD_NONE), GAMETEXT_BRAKE);
+        case INPUT_FLIPLEFT:  return IFullKey("KeyFlipLeft",  XMKey(SDLK_z,     KMOD_NONE), GAMETEXT_FLIPLEFT);
+        case INPUT_FLIPRIGHT: return IFullKey("KeyFlipRight", XMKey(SDLK_e,     KMOD_NONE), GAMETEXT_FLIPRIGHT);
+        case INPUT_CHANGEDIR: return IFullKey("KeyChangeDir", XMKey(SDLK_w,     KMOD_NONE), GAMETEXT_CHANGEDIR);
+      }
+      break;
+    }
+    case 2: {
+      switch (key) {
+        case INPUT_DRIVE:     return IFullKey("KeyDrive",     XMKey(SDLK_r,     KMOD_NONE), GAMETEXT_DRIVE);
+        case INPUT_BRAKE:     return IFullKey("KeyBrake",     XMKey(SDLK_f,     KMOD_NONE), GAMETEXT_BRAKE);
+        case INPUT_FLIPLEFT:  return IFullKey("KeyFlipLeft",  XMKey(SDLK_t,     KMOD_NONE), GAMETEXT_FLIPLEFT);
+        case INPUT_FLIPRIGHT: return IFullKey("KeyFlipRight", XMKey(SDLK_y,     KMOD_NONE), GAMETEXT_FLIPRIGHT);
+        case INPUT_CHANGEDIR: return IFullKey("KeyChangeDir", XMKey(SDLK_v,     KMOD_NONE), GAMETEXT_CHANGEDIR);
+      }
+      break;
+    }
+    case 3: {
+      switch (key) {
+        case INPUT_DRIVE:     return IFullKey("KeyDrive",     XMKey(SDLK_u,     KMOD_NONE), GAMETEXT_DRIVE);
+        case INPUT_BRAKE:     return IFullKey("KeyBrake",     XMKey(SDLK_j,     KMOD_NONE), GAMETEXT_BRAKE);
+        case INPUT_FLIPLEFT:  return IFullKey("KeyFlipLeft",  XMKey(SDLK_i,     KMOD_NONE), GAMETEXT_FLIPLEFT);
+        case INPUT_FLIPRIGHT: return IFullKey("KeyFlipRight", XMKey(SDLK_o,     KMOD_NONE), GAMETEXT_FLIPRIGHT);
+        case INPUT_CHANGEDIR: return IFullKey("KeyChangeDir", XMKey(SDLK_k,     KMOD_NONE), GAMETEXT_CHANGEDIR);
+      }
+      break;
+    }
+  }
+
+  return IFullKey();
+}
+
+IFullKey InputHandler::getDefaultGlobalKey(int key) {
+  switch (key) {
+    case INPUT_SWITCHUGLYMODE:             return IFullKey("KeySwitchUglyMode",             XMKey(SDLK_F9,             KMOD_NONE),             GAMETEXT_SWITCHUGLYMODE);
+    case INPUT_SWITCHBLACKLIST:            return IFullKey("KeySwitchBlacklist",            XMKey(SDLK_b,              KMOD_LCTRL),            GAMETEXT_SWITCHBLACKLIST);
+    case INPUT_SWITCHFAVORITE:             return IFullKey("KeySwitchFavorite",             XMKey(SDLK_F3,             KMOD_NONE),             GAMETEXT_SWITCHFAVORITE);
+    case INPUT_RESTARTLEVEL:               return IFullKey("KeyRestartLevel",               XMKey(SDLK_RETURN,         KMOD_NONE),             GAMETEXT_RESTARTLEVEL);
+    case INPUT_SHOWCONSOLE:                return IFullKey("KeyShowConsole",                XMKey(SDL_SCANCODE_GRAVE,  KMOD_NONE),             GAMETEXT_SHOWCONSOLE);
+    case INPUT_CONSOLEHISTORYPLUS:         return IFullKey("KeyConsoleHistoryPlus",         XMKey(SDLK_PLUS,           KMOD_LCTRL),            GAMETEXT_CONSOLEHISTORYPLUS);
+    case INPUT_CONSOLEHISTORYMINUS:        return IFullKey("KeyConsoleHistoryMinus",        XMKey(SDLK_MINUS,          KMOD_LCTRL),            GAMETEXT_CONSOLEHISTORYMINUS);
+    case INPUT_RESTARTCHECKPOINT:          return IFullKey("KeyRestartCheckpoint",          XMKey(SDLK_BACKSPACE,      KMOD_NONE),             GAMETEXT_RESTARTCHECKPOINT);
+    case INPUT_CHAT:                       return IFullKey("KeyChat",                       XMKey(SDLK_c,              KMOD_LCTRL),            GAMETEXT_CHATDIALOG);
+    case INPUT_CHATPRIVATE:                return IFullKey("KeyChatPrivate",                XMKey(SDLK_p,              KMOD_LCTRL),            GAMETEXT_CHATPRIVATEDIALOG);
+    case INPUT_LEVELWATCHING:              return IFullKey("KeyLevelWatching",              XMKey(SDLK_TAB,            KMOD_NONE),             GAMETEXT_LEVELWATCHING);
+    case INPUT_SWITCHPLAYER:               return IFullKey("KeySwitchPlayer",               XMKey(SDLK_F2,             KMOD_NONE),             GAMETEXT_SWITCHPLAYER);
+    case INPUT_SWITCHTRACKINGSHOTMODE:     return IFullKey("KeySwitchTrackingshotMode",     XMKey(SDLK_F4,             KMOD_NONE),             GAMETEXT_SWITCHTRACKINGSHOTMODE);
+    case INPUT_NEXTLEVEL:                  return IFullKey("KeyNextLevel",                  XMKey(SDLK_PAGEUP,         KMOD_NONE),             GAMETEXT_NEXTLEVEL);
+    case INPUT_PREVIOUSLEVEL:              return IFullKey("KeyPreviousLevel",              XMKey(SDLK_PAGEDOWN,       KMOD_NONE),             GAMETEXT_PREVIOUSLEVEL);
+    case INPUT_SWITCHRENDERGHOSTTRAIL:     return IFullKey("KeySwitchRenderGhosttrail",     XMKey(SDLK_g,              KMOD_LCTRL),            GAMETEXT_SWITCHREDERGHOSTTRAIL);
+    case INPUT_SCREENSHOT:                 return IFullKey("KeyScreenshot",                 XMKey(SDLK_F12,            KMOD_NONE),             GAMETEXT_SCREENSHOT);
+    case INPUT_SWITCHWWWACCESS:            return IFullKey("KeySwitchWWWAccess",            XMKey(SDLK_F8,             KMOD_NONE),             GAMETEXT_SWITCHWWWACCESS);
+    case INPUT_SWITCHFPS:                  return IFullKey("KeySwitchFPS",                  XMKey(SDLK_F7,             KMOD_NONE),             GAMETEXT_SWITCHFPS);
+    case INPUT_SWITCHGFXQUALITYMODE:       return IFullKey("KeySwitchGFXQualityMode",       XMKey(SDLK_F10,            KMOD_NONE),             GAMETEXT_SWITCHGFXQUALITYMODE);
+    case INPUT_SWITCHGFXMODE:              return IFullKey("KeySwitchGFXMode",              XMKey(SDLK_F11,            KMOD_NONE),             GAMETEXT_SWITCHGFXMODE);
+    case INPUT_SWITCHNETMODE:              return IFullKey("KeySwitchNetMode",              XMKey(SDLK_n,              KMOD_LCTRL),            GAMETEXT_SWITCHNETMODE);
+    case INPUT_SWITCHHIGHSCOREINFORMATION: return IFullKey("KeySwitchHighscoreInformation", XMKey(SDLK_w,              KMOD_LCTRL),            GAMETEXT_SWITCHHIGHSCOREINFORMATION);
+    case INPUT_NETWORKADMINCONSOLE:        return IFullKey("KeyNetworkAdminConsole",        XMKey(SDLK_s, (SDL_Keymod)(KMOD_LCTRL|KMOD_LALT)), GAMETEXT_NETWORKADMINCONSOLE);
+    case INPUT_SWITCHSAFEMODE:             return IFullKey("KeySafeMode",                   XMKey(SDLK_F6,             KMOD_NONE),             GAMETEXT_SWITCHSAFEMODE);
+
+    /* uncustomizable keys */
+    case INPUT_HELP:                       return IFullKey("KeyHelp",                       XMKey(SDLK_F1,             KMOD_NONE),             GAMETEXT_HELP,                false);
+    case INPUT_RELOADFILESTODB:            return IFullKey("KeyReloadFilesToDb",            XMKey(SDLK_F5,             KMOD_NONE),             GAMETEXT_RELOADFILESTODB,     false);
+    // don't set it to true while ESCAPE is not setable via the option as a key
+    case INPUT_PLAYINGPAUSE:               return IFullKey("KeyPlayingPause",               XMKey(SDLK_ESCAPE,         KMOD_NONE),             GAMETEXT_PLAYINGPAUSE,        false);
+    case INPUT_KILLPROCESS:                return IFullKey("KeyKillProcess",                XMKey(SDLK_k,              KMOD_LCTRL),            GAMETEXT_KILLPROCESS,         false);
+    case INPUT_REPLAYINGREWIND:            return IFullKey("KeyReplayingRewind",            XMKey(SDLK_LEFT,           KMOD_NONE),             GAMETEXT_REPLAYINGREWIND,     false);
+    case INPUT_REPLAYINGFORWARD:           return IFullKey("KeyReplayingForward",           XMKey(SDLK_RIGHT,          KMOD_NONE),             GAMETEXT_REPLAYINGFORWARD,    false);
+    case INPUT_REPLAYINGPAUSE:             return IFullKey("KeyReplayingPause",             XMKey(SDLK_SPACE,          KMOD_NONE),             GAMETEXT_REPLAYINGPAUSE,      false);
+    case INPUT_REPLAYINGSTOP:              return IFullKey("KeyReplayingStop",              XMKey(SDLK_ESCAPE,         KMOD_NONE),             GAMETEXT_REPLAYINGSTOP,       false);
+    case INPUT_REPLAYINGFASTER:            return IFullKey("KeyReplayingFaster",            XMKey(SDLK_UP,             KMOD_NONE),             GAMETEXT_REPLAYINGFASTER,     false);
+    case INPUT_REPLAYINGABITFASTER:        return IFullKey("KeyReplayingABitFaster",        XMKey(SDLK_UP,             KMOD_LCTRL),            GAMETEXT_REPLAYINGABITFASTER, false);
+    case INPUT_REPLAYINGSLOWER:            return IFullKey("KeyReplayingSlower",            XMKey(SDLK_DOWN,           KMOD_NONE),             GAMETEXT_REPLAYINGSLOWER,     false);
+    case INPUT_REPLAYINGABITSLOWER:        return IFullKey("KeyReplayingABitSlower",        XMKey(SDLK_DOWN,           KMOD_LCTRL),            GAMETEXT_REPLAYINGABITSLOWER, false);
+  }
+
+  return IFullKey();
+}
+
+
 /*===========================================================================
 Set totally default configuration - useful for when something goes wrong
 ===========================================================================*/
 void InputHandler::setDefaultConfig() {
-  m_playerKeys[0][INPUT_DRIVE] =
-    IFullKey("KeyDrive", XMKey(SDLK_UP, KMOD_NONE), GAMETEXT_DRIVE);
-  m_playerKeys[0][INPUT_BRAKE] =
-    IFullKey("KeyBrake", XMKey(SDLK_DOWN, KMOD_NONE), GAMETEXT_BRAKE);
-  m_playerKeys[0][INPUT_FLIPLEFT] =
-    IFullKey("KeyFlipLeft", XMKey(SDLK_LEFT, KMOD_NONE), GAMETEXT_FLIPLEFT);
-  m_playerKeys[0][INPUT_FLIPRIGHT] =
-    IFullKey("KeyFlipRight", XMKey(SDLK_RIGHT, KMOD_NONE), GAMETEXT_FLIPRIGHT);
-  m_playerKeys[0][INPUT_CHANGEDIR] =
-    IFullKey("KeyChangeDir", XMKey(SDLK_SPACE, KMOD_NONE), GAMETEXT_CHANGEDIR);
+  for (int p = 0; p < INPUT_NB_PLAYERS; ++p) {
+    for (int key = 0; key < INPUT_NB_PLAYERKEYS; ++key) {
+      m_playerKeys[p][key] = getDefaultPlayerKey(p, key);
+    }
+  }
 
-  m_playerKeys[1][INPUT_DRIVE] =
-    IFullKey("KeyDrive", XMKey(SDLK_a, KMOD_NONE), GAMETEXT_DRIVE);
-  m_playerKeys[1][INPUT_BRAKE] =
-    IFullKey("KeyBrake", XMKey(SDLK_q, KMOD_NONE), GAMETEXT_BRAKE);
-  m_playerKeys[1][INPUT_FLIPLEFT] =
-    IFullKey("KeyFlipLeft", XMKey(SDLK_z, KMOD_NONE), GAMETEXT_FLIPLEFT);
-  m_playerKeys[1][INPUT_FLIPRIGHT] =
-    IFullKey("KeyFlipRight", XMKey(SDLK_e, KMOD_NONE), GAMETEXT_FLIPRIGHT);
-  m_playerKeys[1][INPUT_CHANGEDIR] =
-    IFullKey("KeyChangeDir", XMKey(SDLK_w, KMOD_NONE), GAMETEXT_CHANGEDIR);
-
-  m_playerKeys[2][INPUT_DRIVE] =
-    IFullKey("KeyDrive", XMKey(SDLK_r, KMOD_NONE), GAMETEXT_DRIVE);
-  m_playerKeys[2][INPUT_BRAKE] =
-    IFullKey("KeyBrake", XMKey(SDLK_f, KMOD_NONE), GAMETEXT_BRAKE);
-  m_playerKeys[2][INPUT_FLIPLEFT] =
-    IFullKey("KeyFlipLeft", XMKey(SDLK_t, KMOD_NONE), GAMETEXT_FLIPLEFT);
-  m_playerKeys[2][INPUT_FLIPRIGHT] =
-    IFullKey("KeyFlipRight", XMKey(SDLK_y, KMOD_NONE), GAMETEXT_FLIPRIGHT);
-  m_playerKeys[2][INPUT_CHANGEDIR] =
-    IFullKey("KeyChangeDir", XMKey(SDLK_v, KMOD_NONE), GAMETEXT_CHANGEDIR);
-
-  m_playerKeys[3][INPUT_DRIVE] =
-    IFullKey("KeyDrive", XMKey(SDLK_u, KMOD_NONE), GAMETEXT_DRIVE);
-  m_playerKeys[3][INPUT_BRAKE] =
-    IFullKey("KeyBrake", XMKey(SDLK_j, KMOD_NONE), GAMETEXT_BRAKE);
-  m_playerKeys[3][INPUT_FLIPLEFT] =
-    IFullKey("KeyFlipLeft", XMKey(SDLK_i, KMOD_NONE), GAMETEXT_FLIPLEFT);
-  m_playerKeys[3][INPUT_FLIPRIGHT] =
-    IFullKey("KeyFlipRight", XMKey(SDLK_o, KMOD_NONE), GAMETEXT_FLIPRIGHT);
-  m_playerKeys[3][INPUT_CHANGEDIR] =
-    IFullKey("KeyChangeDir", XMKey(SDLK_k, KMOD_NONE), GAMETEXT_CHANGEDIR);
-
-  m_globalKeys[INPUT_SWITCHUGLYMODE] = IFullKey(
-    "KeySwitchUglyMode", XMKey(SDLK_F9, KMOD_NONE), GAMETEXT_SWITCHUGLYMODE);
-  m_globalKeys[INPUT_SWITCHBLACKLIST] = IFullKey(
-    "KeySwitchBlacklist", XMKey(SDLK_b, KMOD_LCTRL), GAMETEXT_SWITCHBLACKLIST);
-  m_globalKeys[INPUT_SWITCHFAVORITE] = IFullKey(
-    "KeySwitchFavorite", XMKey(SDLK_F3, KMOD_NONE), GAMETEXT_SWITCHFAVORITE);
-  m_globalKeys[INPUT_RESTARTLEVEL] = IFullKey(
-    "KeyRestartLevel", XMKey(SDLK_RETURN, KMOD_NONE), GAMETEXT_RESTARTLEVEL);
-  m_globalKeys[INPUT_SHOWCONSOLE] = IFullKey(
-    "KeyShowConsole", XMKey(SDL_SCANCODE_GRAVE, KMOD_NONE), GAMETEXT_SHOWCONSOLE);
-  m_globalKeys[INPUT_CONSOLEHISTORYPLUS] =
-    IFullKey("KeyConsoleHistoryPlus",
-             XMKey(SDLK_PLUS, KMOD_LCTRL),
-             GAMETEXT_CONSOLEHISTORYPLUS);
-  m_globalKeys[INPUT_CONSOLEHISTORYMINUS] =
-    IFullKey("KeyConsoleHistoryMinus",
-             XMKey(SDLK_MINUS, KMOD_LCTRL),
-             GAMETEXT_CONSOLEHISTORYMINUS);
-  m_globalKeys[INPUT_RESTARTCHECKPOINT] =
-    IFullKey("KeyRestartCheckpoint",
-             XMKey(SDLK_BACKSPACE, KMOD_NONE),
-             GAMETEXT_RESTARTCHECKPOINT);
-  m_globalKeys[INPUT_CHAT] =
-    IFullKey("KeyChat", XMKey(SDLK_c, KMOD_LCTRL), GAMETEXT_CHATDIALOG);
-  m_globalKeys[INPUT_CHATPRIVATE] = IFullKey(
-    "KeyChatPrivate", XMKey(SDLK_p, KMOD_LCTRL), GAMETEXT_CHATPRIVATEDIALOG);
-  m_globalKeys[INPUT_LEVELWATCHING] = IFullKey(
-    "KeyLevelWatching", XMKey(SDLK_TAB, KMOD_NONE), GAMETEXT_LEVELWATCHING);
-  m_globalKeys[INPUT_SWITCHPLAYER] = IFullKey(
-    "KeySwitchPlayer", XMKey(SDLK_F2, KMOD_NONE), GAMETEXT_SWITCHPLAYER);
-  m_globalKeys[INPUT_SWITCHTRACKINGSHOTMODE] =
-    IFullKey("KeySwitchTrackingshotMode",
-             XMKey(SDLK_F4, KMOD_NONE),
-             GAMETEXT_SWITCHTRACKINGSHOTMODE);
-  m_globalKeys[INPUT_NEXTLEVEL] =
-    IFullKey("KeyNextLevel", XMKey(SDLK_PAGEUP, KMOD_NONE), GAMETEXT_NEXTLEVEL);
-  m_globalKeys[INPUT_PREVIOUSLEVEL] = IFullKey("KeyPreviousLevel",
-                                               XMKey(SDLK_PAGEDOWN, KMOD_NONE),
-                                               GAMETEXT_PREVIOUSLEVEL);
-  m_globalKeys[INPUT_SWITCHRENDERGHOSTTRAIL] =
-    IFullKey("KeySwitchRenderGhosttrail",
-             XMKey(SDLK_g, KMOD_LCTRL),
-             GAMETEXT_SWITCHREDERGHOSTTRAIL);
-  m_globalKeys[INPUT_SCREENSHOT] =
-    IFullKey("KeyScreenshot", XMKey(SDLK_F12, KMOD_NONE), GAMETEXT_SCREENSHOT);
-  m_globalKeys[INPUT_SWITCHWWWACCESS] = IFullKey(
-    "KeySwitchWWWAccess", XMKey(SDLK_F8, KMOD_NONE), GAMETEXT_SWITCHWWWACCESS);
-  m_globalKeys[INPUT_SWITCHFPS] =
-    IFullKey("KeySwitchFPS", XMKey(SDLK_F7, KMOD_NONE), GAMETEXT_SWITCHFPS);
-  m_globalKeys[INPUT_SWITCHGFXQUALITYMODE] =
-    IFullKey("KeySwitchGFXQualityMode",
-             XMKey(SDLK_F10, KMOD_NONE),
-             GAMETEXT_SWITCHGFXQUALITYMODE);
-  m_globalKeys[INPUT_SWITCHGFXMODE] = IFullKey(
-    "KeySwitchGFXMode", XMKey(SDLK_F11, KMOD_NONE), GAMETEXT_SWITCHGFXMODE);
-  m_globalKeys[INPUT_SWITCHNETMODE] = IFullKey(
-    "KeySwitchNetMode", XMKey(SDLK_n, KMOD_LCTRL), GAMETEXT_SWITCHNETMODE);
-  m_globalKeys[INPUT_SWITCHHIGHSCOREINFORMATION] =
-    IFullKey("KeySwitchHighscoreInformation",
-             XMKey(SDLK_w, KMOD_LCTRL),
-             GAMETEXT_SWITCHHIGHSCOREINFORMATION);
-  m_globalKeys[INPUT_NETWORKADMINCONSOLE] =
-    IFullKey("KeyNetworkAdminConsole",
-             XMKey(SDLK_s, (SDL_Keymod)(KMOD_LCTRL | KMOD_LALT)),
-             GAMETEXT_NETWORKADMINCONSOLE);
-  m_globalKeys[INPUT_SWITCHSAFEMODE] =
-    IFullKey("KeySafeMode", XMKey(SDLK_F6, KMOD_NONE), GAMETEXT_SWITCHSAFEMODE);
-
-  // uncustomizable keys
-  m_globalKeys[INPUT_HELP] =
-    IFullKey("KeyHelp", XMKey(SDLK_F1, KMOD_NONE), GAMETEXT_HELP, false);
-  m_globalKeys[INPUT_RELOADFILESTODB] = IFullKey("KeyReloadFilesToDb",
-                                                 XMKey(SDLK_F5, KMOD_NONE),
-                                                 GAMETEXT_RELOADFILESTODB,
-                                                 false);
-  m_globalKeys[INPUT_PLAYINGPAUSE] =
-    IFullKey("KeyPlayingPause",
-             XMKey(SDLK_ESCAPE, KMOD_NONE),
-             GAMETEXT_PLAYINGPAUSE,
-             false); // don't set it to true while ESCAPE is not setable via the
-  // option as a key
-  m_globalKeys[INPUT_KILLPROCESS] = IFullKey(
-    "KeyKillProcess", XMKey(SDLK_k, KMOD_LCTRL), GAMETEXT_KILLPROCESS, false);
-  m_globalKeys[INPUT_REPLAYINGREWIND] = IFullKey("KeyReplayingRewind",
-                                                 XMKey(SDLK_LEFT, KMOD_NONE),
-                                                 GAMETEXT_REPLAYINGREWIND,
-                                                 false);
-  m_globalKeys[INPUT_REPLAYINGFORWARD] = IFullKey("KeyReplayingForward",
-                                                  XMKey(SDLK_RIGHT, KMOD_NONE),
-                                                  GAMETEXT_REPLAYINGFORWARD,
-                                                  false);
-  m_globalKeys[INPUT_REPLAYINGPAUSE] = IFullKey("KeyReplayingPause",
-                                                XMKey(SDLK_SPACE, KMOD_NONE),
-                                                GAMETEXT_REPLAYINGPAUSE,
-                                                false);
-  m_globalKeys[INPUT_REPLAYINGSTOP] = IFullKey("KeyReplayingStop",
-                                               XMKey(SDLK_ESCAPE, KMOD_NONE),
-                                               GAMETEXT_REPLAYINGSTOP,
-                                               false);
-  m_globalKeys[INPUT_REPLAYINGFASTER] = IFullKey("KeyReplayingFaster",
-                                                 XMKey(SDLK_UP, KMOD_NONE),
-                                                 GAMETEXT_REPLAYINGFASTER,
-                                                 false);
-  m_globalKeys[INPUT_REPLAYINGABITFASTER] =
-    IFullKey("KeyReplayingABitFaster",
-             XMKey(SDLK_UP, KMOD_LCTRL),
-             GAMETEXT_REPLAYINGABITFASTER,
-             false);
-  m_globalKeys[INPUT_REPLAYINGSLOWER] = IFullKey("KeyReplayingSlower",
-                                                 XMKey(SDLK_DOWN, KMOD_NONE),
-                                                 GAMETEXT_REPLAYINGSLOWER,
-                                                 false);
-  m_globalKeys[INPUT_REPLAYINGABITSLOWER] =
-    IFullKey("KeyReplayingABitSlower",
-             XMKey(SDLK_DOWN, KMOD_LCTRL),
-             GAMETEXT_REPLAYINGABITSLOWER,
-             false);
+  for (int key = 0; key < INPUT_NB_GLOBALKEYS; ++key) {
+    m_globalKeys[key] = getDefaultGlobalKey(key);
+  }
 }
 
-void InputHandler::sdl12CompatMap(XMKey &key, const std::unordered_map<int32_t, int32_t> &map) {
-  // key modifiers are the same between SDL 1.2 and 2.0,
-  // no need to do anything about them
-  auto it = map.find(key.getKeyboardSym());
+void InputHandler::sdl12CompatMap(IFullKey &fkey, IFullKey defaultKey,
+    const std::unordered_map<int32_t, int32_t> &map) {
+
+  SDL_Keycode keycode = fkey.key.getKeyboardSym();
+  /* handle SDL1.2 "world keys" (SDLK_WORLD_0..SDLK_WORLD_95) */
+  if (keycode >= 160 && keycode <= 255) {
+    fkey = defaultKey;
+    return;
+  }
+
+  auto it = map.find(keycode);
 
   if (it != map.end())
-    key = XMKey(it->second, key.getKeyboardMod());
+    // key modifiers are the same between SDL 1.2 and 2.0,
+    // no need to do anything about them
+    fkey.key = XMKey(it->second, fkey.key.getKeyboardMod());
 }
 
 void InputHandler::sdl12CompatUpgrade() {
@@ -453,16 +405,25 @@ void InputHandler::sdl12CompatUpgrade() {
 
   XMFS::closeFile(pfh);
 
-  for (auto &keys : m_playerKeys)
-    for (auto &fullkey : keys)
-      sdl12CompatMap(fullkey.key, map);
+  for (int p = 0; p < INPUT_NB_PLAYERS; ++p) {
+    for (int key = 0; key < INPUT_NB_PLAYERKEYS; ++key) {
+      auto &fkey = m_playerKeys[p][key];
+      sdl12CompatMap(fkey, getDefaultPlayerKey(p, key), map);
+    }
+  }
 
-  for (auto &fullkey : m_globalKeys)
-    sdl12CompatMap(fullkey.key, map);
+  for (int key = 0; key < INPUT_NB_GLOBALKEYS; ++key) {
+    auto &fkey = m_globalKeys[key];
+    sdl12CompatMap(fkey, getDefaultGlobalKey(key), map);
+  }
 
-  for (auto &keys : m_nScriptActionKeys)
-    for (auto &key : keys)
-      sdl12CompatMap(key, map);
+  for (int p = 0; p < INPUT_NB_PLAYERS; ++p) {
+    for (int key = 0; key < MAX_SCRIPT_KEY_HOOKS; ++key) {
+      IFullKey fkey;
+      sdl12CompatMap(fkey, fkey, map);
+      m_nScriptActionKeys[p][key] = fkey.key;
+    }
+  }
 }
 
 bool InputHandler::sdl12CompatIsUpgraded(xmDatabase *pDb,

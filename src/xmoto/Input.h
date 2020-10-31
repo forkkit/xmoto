@@ -157,13 +157,17 @@ public:
   bool areJoysticksEnabled() const;
   void enableJoysticks(bool i_value);
 
+  IFullKey getDefaultPlayerKey(int player, int key);
+  IFullKey getDefaultGlobalKey(int key);
+
   void setDefaultConfig();
   void saveConfig(UserConfig *pConfig,
                   xmDatabase *pDb,
                   const std::string &i_id_profile);
 
   void sdl12CompatUpgrade();
-  void sdl12CompatMap(XMKey &key, const std::unordered_map<int32_t, int32_t> &map);
+  void sdl12CompatMap(IFullKey &fkey, IFullKey defaultKey,
+    const std::unordered_map<int32_t, int32_t> &map);
   bool sdl12CompatIsUpgraded(xmDatabase *pDb, const std::string &i_id_profile) const;
 
   bool isANotGameSetKey(XMKey *i_xmkey) const;
